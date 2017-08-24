@@ -1,2 +1,2 @@
-# ansible
-Ansible Projects
+# Ansible
+Ansible Projects (Playbooks, tasks and roles)

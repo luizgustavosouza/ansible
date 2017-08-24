@@ -1,0 +1,46 @@
+---
+- name: include variables file
+  include_vars: main.yml
+
+# adding a new vmware disk
+
+- name: add new disk
+  vmware_guest:
+    hostname:
+    username:
+    password:
+    datacenter:
+    cluster:
+    disk:
+    - size_gb:
+      type:
+      datastore:
+      #autoselect_datastore: true
+
+# create a directory if it doesn't exist
+- name: create directory for mount point
+  file:
+    path: "{{ directory_path }" # path to the mount point, eg: C(/mnt/files)
+    state: directory
+    mode: 0755
+
+# create volume group
+- name: create volume group and set physical volume
+  lvg:
+    vg: "{{ vg_name }}" # The name of the volume group.
+    pvs: "{{ pvs_name }}" # Device to use as physical device in this volume group.
+
+# configure logical volume
+- name: configure lvm
+  lvol:
+    lv: "{{ lv_name }}"  # The name of the logical volume.
+    vg: "{{ vg_name }}"  # The volume group this logical volume is part of.
+    size: "{{ lv_size }}"        # The size of the logical volume
+
+# mount logical volume
+- name: mount logical volume
+  mount:
+    path: "{{ directory_path }}"  # path to the mount point, eg: C(/mnt/files)
+    src: "{{ mount_src }}"  # device to be mounted on I(name).
+    fstype: "{{ mount_fstype }}"  # file-system type
+    state: "{{ mount_state }}"  # If C(mounted) or C(unmounted), the device will be actively mounted or unmounted as needed and appropriately configured in I(fstab).,C(absent) and C(present) only deal with I(fstab) but will not affect current mounting.,If specifying C(mounted) and the mount point is not present, the mount point will be created. Similarly.,Specifying C(absent) will remove the mount point directory.

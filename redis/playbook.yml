@@ -1,0 +1,4 @@
+---
+- name: atualização de S.O e instalação do Redis
+  hosts: localhost
+  become: true

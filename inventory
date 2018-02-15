@@ -1,5 +1,2 @@
-[lab]
-lab01_ansible
-
 [databases]
-ansible_host=
+192.168.121.131

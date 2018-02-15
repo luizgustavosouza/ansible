@@ -11,11 +11,28 @@
       stable: latest
   tags:
     - instalacao
-
-- name: Instalando Pacote Client
+- name: Instalando Pacote Server
   yum:
       name: postgresql10-server
       stable: latest
   tags:
     - instalacao
-    
+
+- name: Iniciando DataBase
+  command: /usr/pgsql-10/bin/postgresql-10-setup initdb
+  tags:
+    - startdb
+
+- name: Habilitando Servico
+  systemd:
+    name: postgresql-10
+    enabled: yes
+  tags:
+    - iniciar
+- name: Iniciando Servico
+  systemd:
+    name: postgresql-10
+    state: started
+    enabled: yes
+  tags:
+    - iniciar

@@ -1,20 +1,20 @@
 ---
 # tasks file for ansible-postgres
 - name: Instalando Repositorio
-  command: yum install https://download.postgresql.org/pub/repos/yum/10/redhat/rhel-7-x86_64/pgdg-centos10-10-1.noarch.rpm
+  command: yum install https://download.postgresql.org/pub/repos/yum/10/redhat/rhel-7-x86_64/pgdg-centos10-10-1.noarch.rpm -y
   tags:
     - download
 
 - name: Instalando Pacote Client
   yum:
       name: postgresql10
-      stable: latest
+      state: latest
   tags:
     - instalacao
 - name: Instalando Pacote Server
   yum:
       name: postgresql10-server
-      stable: latest
+      state: latest
   tags:
     - instalacao
 

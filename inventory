@@ -2,3 +2,4 @@
 lab01_ansible
 
 [databases]
+ansible_host=

@@ -1,0 +1,4 @@
+---
+- hosts: lab
+  roles:
+    - {role: ansible-role-system-update }

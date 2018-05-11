@@ -1,9 +1,0 @@
----
-directory_path:
-vg_name:
-pvs_name:
-lv_name:
-lv_size:
-mount_src: /dev/{{ vg_name }}/{{ lv_name }}
-mount_fstype:
-mount_state: 

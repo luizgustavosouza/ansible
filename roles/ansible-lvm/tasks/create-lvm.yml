@@ -1,0 +1,6 @@
+- name: Create a logical volume 
+  lvol:
+    vg: "{{ vg_name }}"
+    lv: "{{ lv_name }}"
+    size: "{{ lvm_size }}"
+    pvs: "{{ device_path1 }}","{{ device_path2 }}"
